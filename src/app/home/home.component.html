@@ -1,1 +1,20 @@
-<p>home works!</p>
+<section class="hero">
+    <div class="container">
+        <ng-container *ngIf="headerInfo$ | async as headerInfo">
+            <h1> {{ headerInfo.title }} </h1>
+            <p>
+                {{ headerInfo.description }}
+            </p>
+        </ng-container>
+    </div>
+</section>
+
+
+<section class="testimonials">
+    <ng-container *ngIf="testimonials$ | async as testimonials ">
+        <app-testimonial
+            *ngFor="let testimonial of testimonials"
+            [testimonial]="testimonial"
+        ></app-testimonial>
+    </ng-container>
+</section>

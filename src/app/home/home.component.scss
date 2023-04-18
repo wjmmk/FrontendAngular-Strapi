@@ -1,0 +1,24 @@
+.hero {
+    height: 60vh;
+    display: grid;
+    place-items: center;
+    background-color: #234c6d;
+    padding: 4rem;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    color: aliceblue;
+}
+
+.hero p {
+    font-size: 2rem;
+    color: aliceblue;
+}
+
+.testimonials {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 4rem;
+    padding: 3rem;
+}
