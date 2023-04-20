@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
+import { HomeRoutingModule } from './home/home-routing.module';
 
 
 @NgModule({
@@ -11,9 +12,10 @@ import { HttpClientModule } from '@angular/common/http';
     AppComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     HttpClientModule,
+    HomeRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

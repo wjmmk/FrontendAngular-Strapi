@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ITestimonial } from '../core/models/testimonial.model';
-import { IHeader } from '../core/models/header.model';
-import { Observable } from 'rxjs';
 import { WebsideService } from '../core/services/webside.service';
+
 
 @Component({
   selector: 'app-home',
@@ -11,14 +10,30 @@ import { WebsideService } from '../core/services/webside.service';
 })
 export class HomeComponent implements OnInit {
 
-  testimonials$!: Observable<ITestimonial[]>;
-  headerInfo$!: Observable<IHeader>;
+  testimonials!: ITestimonial[];
+  title!: string;
+  description!: string;
 
   constructor( private _websideService: WebsideService) { }
 
-  ngOnInit(): void {
-    this.headerInfo$ = this._websideService.getHeaderInfo();
-    this.testimonials$ = this._websideService.getTestimonials();
+  ngOnInit() {
+     this.getHeaderInfo();
+     this.getTestimonials();
   }
 
+  getHeaderInfo() {
+    this._websideService.getHeaderInfo().subscribe(
+      (resp: any) => {
+        const {title, description} = resp.data.attributes
+        this.title = title;
+        this.description = description;
+      } 
+    );
+  }
+
+  getTestimonials() {
+    this._websideService.getTestimonials().subscribe(
+      (resp: any) => { this.testimonials = resp.data }
+    );
+  }
 }
